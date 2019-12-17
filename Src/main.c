@@ -29,6 +29,7 @@
 
 /* USER CODE END Includes */
 //char myRdData[15];
+// for sdcard
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
