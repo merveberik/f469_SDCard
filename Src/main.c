@@ -6,7 +6,6 @@
 
 void SystemClock_Config(void);
 
-char myRdData[15];
 
 int main(void){
 
@@ -22,9 +21,10 @@ int main(void){
 	UINT testByte;
 	if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
 		HAL_GPIO_TogglePin(led1_GPIO_Port, led1_Pin);
-		char myPath[] = "MERVE.TXT\0";
-		f_open(&myFILE, myPath, FA_READ | FA_OPEN_ALWAYS);
-		f_read(&myFILE, myRdData, 15,  &testByte);
+		char myPath[] = "WRITE.TXT\0";
+		f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+		char myData[] = "1234567\0";
+		f_write(&myFILE, myData, sizeof(myData), &testByte);
 		f_close(&myFILE);
 		HAL_Delay(1000);
 		HAL_GPIO_TogglePin(led2_GPIO_Port, led2_Pin);
