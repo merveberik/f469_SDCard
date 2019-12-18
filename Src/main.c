@@ -7,10 +7,10 @@
 void SystemClock_Config(void);
 
 char myRdData[15];
+
 int main(void){
 
 	HAL_Init();
-
 
 	SystemClock_Config();
 
