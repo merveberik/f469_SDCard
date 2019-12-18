@@ -28,7 +28,6 @@ int main(void){
 		f_close(&myFILE);
 		HAL_Delay(1000);
 		HAL_GPIO_TogglePin(led2_GPIO_Port, led2_Pin);
-
 	}
 	while (1){
 
