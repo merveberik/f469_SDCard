@@ -21,9 +21,10 @@ int main(void){
 	UINT testByte;
 	if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
 		HAL_GPIO_TogglePin(led1_GPIO_Port, led1_Pin);
-		char myPath[] = "WRITE.TXT\0";
+		f_mkdir("/MYFOLDER\0");
+		char myPath[] = "/MYFOLDER/MWRITE.TXT\0";
 		f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
-		char myData[] = "1234567\0";
+		char myData[] = "WRITE DATA\0";
 		f_write(&myFILE, myData, sizeof(myData), &testByte);
 		f_close(&myFILE);
 		HAL_Delay(1000);
