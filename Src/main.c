@@ -18,14 +18,15 @@ int main(void){
 	MX_FATFS_Init();
 	FATFS myFATAFS;
 	FIL myFILE;
-	UINT testByte;
+//	UINT testByte;
 	if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
 		HAL_GPIO_TogglePin(led1_GPIO_Port, led1_Pin);
-		f_mkdir("/MYFOLDER\0");
-		char myPath[] = "/MYFOLDER/MWRITE.TXT\0";
-		f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
-		char myData[] = "WRITE DATA\0";
-		f_write(&myFILE, myData, sizeof(myData), &testByte);
+//		f_mkdir("/MYFOLDER\0");
+		char myPathName[] = "WRITE0.TXT\0";
+		f_open(&myFILE, myPathName, FA_WRITE | FA_CREATE_ALWAYS);
+		for(uint8_t m = 0; m<12; m++){
+			f_printf(&myFILE, "%d\n", m);
+		}
 		f_close(&myFILE);
 		HAL_Delay(1000);
 		HAL_GPIO_TogglePin(led2_GPIO_Port, led2_Pin);
