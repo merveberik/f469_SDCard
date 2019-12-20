@@ -21,10 +21,11 @@ int main(void){
 //	UINT testByte;
 	if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
 		HAL_GPIO_TogglePin(led1_GPIO_Port, led1_Pin);
-		char myPathName[] = "WRITE0.TXT\0";
+		char myPathName[] = "WRITE2.TXT\0";
 		f_open(&myFILE, myPathName, FA_WRITE | FA_CREATE_ALWAYS);
-		uint32_t myData = 0x21ab98;
-		f_printf(&myFILE, "%06x", myData);
+		uint32_t myData;
+		for(myData = 01; myData < 30; myData++)
+			f_printf(&myFILE, "%02x\n", myData);
 		f_close(&myFILE);
 		HAL_Delay(1000);
 		HAL_GPIO_TogglePin(led2_GPIO_Port, led2_Pin);
